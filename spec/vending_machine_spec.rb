@@ -26,6 +26,12 @@ describe 'Vending Machine' do
     it "should add item to bought_items" do
        expect{vending_machine.buy("Water")}.to change{vending_machine.bought_items.length}.from(0).to(1)
     end
-  end
 
+    it "should raise error if item is unavailable" do
+      vending_machine.buy("Crisps")
+      vending_machine.buy("Crisps")
+      vending_machine.buy("Crisps")
+      expect{ vending_machine.buy("Crisps") }.to raise_error("Item is unavailable")
+    end
+  end
 end

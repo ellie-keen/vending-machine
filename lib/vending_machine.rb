@@ -9,8 +9,17 @@ class VendingMachine
   end
 
   def buy(item)
+    check_stock(item)
     item == "Water" ? @water_stock.pop : @crisps_stock.pop
     @bought_items << item
+  end
+
+  private
+
+  def check_stock(item)
+    if item == "Water" && !@water_stock.include?("Water") || item == "Crisps" && !@crisps_stock.include?("Crisps")
+      raise "Item is unavailable"
+    end
   end
 
 end
